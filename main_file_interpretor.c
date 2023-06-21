@@ -4,7 +4,6 @@
  * @stack: Pointer to stack
  * @opcode: Opcode to execute
  * @line_number: Line number in the file
- * @file_path: Path to the file
  * Return: Exit status
  */
 int execute_instruction(stack_t **stack, const char *opcode,
