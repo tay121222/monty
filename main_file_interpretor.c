@@ -63,18 +63,20 @@ int interpret_file(const char *file_path)
 	{
 		char *token = strtok(line, " \r\t\n");
 
-		if (token == NULL || token[0] == '#')
+		if (token != NULL)
 		{
-			line_number++;
-			continue;
-		}
+			if (token[0] == '#')
+			{
+				line_number++;
+				continue;
+			}
+			status = execute_instruction(&stack, token, line_number);
 
-		status = execute_instruction(&stack, token, line_number);
-
-		if (status != EXIT_SUCCESS)
-		{
-			fclose(file);
-			return (status);
+			if (status != EXIT_SUCCESS)
+			{
+				fclose(file);
+				return (status);
+			}
 		}
 
 		line_number++;
