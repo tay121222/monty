@@ -31,9 +31,8 @@ int execute_instruction(stack_t **stack, const char *opcode,
 	}
 	else
 	{
-		fprintf(stderr, "L%d: unknown instruction %s\n",
-				line_number, opcode);
-		return (0);
+		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
+		return (EXIT_FAILURE);
 	}
 
 	return (EXIT_SUCCESS);
