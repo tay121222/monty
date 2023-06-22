@@ -20,3 +20,22 @@ void swap(stack_t **stack, unsigned int line_number)
 	/*insert_dnodeint_at_index(stack, 1, i);*/
 }
 
+/**
+ * add - Adds the top two elements of the stack
+ * @stack: Pointer to stack
+ * @line_number: Line number in the file
+ */
+void add(stack_t **stack, unsigned int line_number)
+{
+	int n;
+	int m;
+
+	if (!get_dnodeint_at_index(*stack, 1))
+	{
+		fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	n = pop(stack);
+	m = pop(stack);
+	insert_dnodeint_at_index(stack, 0, n + m);
+}
