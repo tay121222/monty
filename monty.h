@@ -44,6 +44,6 @@ int interpret_file(const char *file_path);
 int push(stack_t **stack, int value);
 void pall(stack_t **stack);
 int execute_instruction(stack_t **stack, const char *opcode,
-		int line_number);
+		unsigned int line_number);
 char *rtrim(char *str, const char *chars);
 #endif /* MONTY_H */

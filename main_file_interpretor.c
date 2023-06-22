@@ -7,18 +7,18 @@
  * Return: Exit status
  */
 int execute_instruction(stack_t **stack, const char *opcode,
-		int line_number)
+		unsigned int line_number)
 {
 	char *token;
 	int argument;
 
 	if (strcmp(opcode, "push") == 0)
 	{
-		token = strtok(NULL, " \t\n");
+		token = strtok(NULL, " \r\t\n");
 
-		if (token == NULL || !isdigit(token[0]))
+		if (token == NULL || (!isdigit(token[0]) && token[0] != '-'))
 		{
-			fprintf(stderr, "L%d: usage: push integer\n", line_number);
+			fprintf(stderr, "L%u: usage: push integer\n", line_number);
 			return (EXIT_FAILURE);
 		}
 		argument = atoi(token);
@@ -31,7 +31,7 @@ int execute_instruction(stack_t **stack, const char *opcode,
 	}
 	else
 	{
-		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
+		fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
 		return (EXIT_FAILURE);
 	}
 
@@ -80,6 +80,7 @@ int interpret_file(const char *file_path)
 		line_number++;
 	}
 
+	free_dlistint(stack);
 	fclose(file);
 	return (EXIT_SUCCESS);
 }
