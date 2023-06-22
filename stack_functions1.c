@@ -9,7 +9,7 @@ void swap(stack_t **stack, unsigned int line_number)
 {
 	int i;
 
-	if (*stack == NULL || (*stack)->next == NULL)
+	if (!get_dnodeint_at_index(*stack, 1))
 	{
 		fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
