@@ -51,3 +51,30 @@ void sub(stack_t **stack, unsigned int line_number)
 	(*stack)->next->n = (*stack)->next->n - (*stack)->n;
 	pop(stack);
 }
+
+/**
+ * div - Divides the second top element of the stack by the top element
+ * @stack: Pointer to stack
+ * @line_number: Line number in the file
+ *
+ * Return: Exit status
+ */
+void divide(stack_t **stack, unsigned int line_number)
+{
+	int n, m;
+
+	if (!get_dnodeint_at_index(*stack, 1))
+	{
+		fprintf(stderr, "L%u: can't div, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	n = pop(stack);
+	m = pop(stack);
+	if (!n)
+	{
+		fprintf(stderr, "L%u: division by zero\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	insert_dnodeint_at_index(stack, 0, m / n);
+}

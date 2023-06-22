@@ -1,4 +1,29 @@
 #include "monty.h"
+
+/**
+ * execute_push - Executes the push opcode
+ * @stack: Pointer to stack
+ * @argument: Argument value
+ * @line_number: Line number in the file
+ * Return: Exit status
+ */
+int execute_push(stack_t **stack, unsigned int line_number)
+{
+	char *token;
+	int argument;
+
+	fflush(stdout);
+	token = strtok(NULL, " \r\t\n");
+	if (token == NULL || !is_integer(token))
+	{
+		fprintf(stderr, "L%u: usage: push integer\n", line_number);
+		return (EXIT_FAILURE);
+	}
+	argument = atoi(token);
+	push(stack, argument);
+	return (EXIT_SUCCESS);
+}
+
 /**
  * execute_instruction - Executes instruction based on the opcode
  * @stack: Pointer to stack
@@ -9,25 +34,10 @@
 int execute_instruction(stack_t **stack, const char *opcode,
 		unsigned int line_number)
 {
-	char *token;
-	int argument;
-
 	if (strcmp(opcode, "pall") == 0)
 		pall(stack);
 	else if (strcmp(opcode, "push") == 0)
-	{
-		fflush(stdout);
-		token = strtok(NULL, " \r\t\n");
-
-		if (token == NULL || !is_integer(token))
-		{
-			fprintf(stderr, "L%u: usage: push integer\n", line_number);
-			return (EXIT_FAILURE);
-		}
-		argument = atoi(token);
-
-		push(stack, argument);
-	}
+		execute_push(stack, line_number);
 	else if (strcmp(opcode, "pint") == 0)
 		pint(stack, line_number);
 	else if (strcmp(opcode, "pop") == 0)
@@ -41,6 +51,8 @@ int execute_instruction(stack_t **stack, const char *opcode,
 	}
 	else if (strcmp(opcode, "sub") == 0)
 		sub(stack, line_number);
+	else if (strcmp(opcode, "div") == 0)
+		divide(stack, line_number);
 	else
 	{
 		fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
