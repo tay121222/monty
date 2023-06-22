@@ -27,15 +27,11 @@ void swap(stack_t **stack, unsigned int line_number)
  */
 void add(stack_t **stack, unsigned int line_number)
 {
-	int n;
-	int m;
-
 	if (!get_dnodeint_at_index(*stack, 1))
 	{
 		fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	n = pop(stack);
-	m = pop(stack);
-	insert_dnodeint_at_index(stack, 0, n + m);
+	(*stack)->next->n = (*stack)->next->n + (*stack)->n;
+	pop(stack);
 }
