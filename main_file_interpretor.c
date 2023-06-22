@@ -31,8 +31,8 @@ int execute_instruction(stack_t **stack, const char *opcode,
 	}
 	else
 	{
-		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
-		return (EXIT_FAILURE);
+		fprintf(stderr, "Opcode %s not found! On line: %d\n", opcode, line_number);
+		return (0);
 	}
 
 	return (EXIT_SUCCESS);
@@ -53,7 +53,7 @@ int interpret_file(const char *file_path)
 
 	if (file == NULL)
 	{
-		fprintf(stderr, "Error: Can't open file %s\n", file_path);
+		fprintf(stderr, "FILE_PTR NULL!\n");
 		return (EXIT_FAILURE);
 	}
 
