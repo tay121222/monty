@@ -54,21 +54,8 @@ int interpret_file(const char *file_path)
 
 	if (file == NULL)
 	{
-		if (errno == EACCES)
-		{
-			fprintf(stderr, "EACCESS\n");
-			exit(126);
-		}
-		else if (errno = ENOENT)
-		{
-			fprintf(stderr, "ENOENT\n");
-			exit(127);
-		}
-		else
-		{
-			fprintf(stderr, "FILE_PTR NULL!\n");
-			return (EXIT_FAILURE);
-		}
+		fprintf(stderr, "Error: Can't open file %s\n", file_path);
+		return (EXIT_FAILURE);
 	}
 
 	line_number = 1;
