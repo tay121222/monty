@@ -3,7 +3,6 @@
 /**
  * execute_push - Executes the push opcode
  * @stack: Pointer to stack
- * @argument: Argument value
  * @line_number: Line number in the file
  * Return: Exit status
  */
@@ -55,6 +54,8 @@ int execute_instruction(stack_t **stack, const char *opcode,
 		divide(stack, line_number);
 	else if (strcmp(opcode, "mul") == 0)
 		mul(stack, line_number);
+	else if (strcmp(opcode, "mod") == 0)
+		mod(stack, line_number);
 	else
 	{
 		fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
