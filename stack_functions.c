@@ -20,3 +20,23 @@ void pall(stack_t **stack)
 {
 	print_dlistint(*stack);
 }
+
+/**
+ * pint - Prints the value at the top of the stack
+ * @stack: Pointer to stack
+ * @line_number: Line number in the file
+ *
+ * Return: Exit status
+ */
+int pint(stack_t **stack, int line_number)
+{
+	if (!get_dnodeint_at_index(*stack, 0))
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		return (EXIT_FAILURE);
+	}
+
+	printf("%d\n", (*stack)->n);
+	return (EXIT_SUCCESS);
+}
+

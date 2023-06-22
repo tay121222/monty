@@ -13,9 +13,7 @@ int execute_instruction(stack_t **stack, const char *opcode,
 	int argument;
 
 	if (strcmp(opcode, "pall") == 0)
-	{
 		pall(stack);
-	}
 	else if (strcmp(opcode, "push") == 0)
 	{
 		fflush(stdout);
@@ -30,6 +28,8 @@ int execute_instruction(stack_t **stack, const char *opcode,
 
 		push(stack, argument);
 	}
+	else if (strcmp(opcode, "pint") == 0)
+		pint(stack, line_number);
 	else
 	{
 		fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
