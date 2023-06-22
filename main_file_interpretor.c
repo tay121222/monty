@@ -32,6 +32,8 @@ int execute_instruction(stack_t **stack, const char *opcode,
 		pint(stack, line_number);
 	else if (strcmp(opcode, "pop") == 0)
 		pop_code(stack, line_number);
+	else if (strcmp(opcode, "swap") == 0)
+		swap(stack, line_number);
 	else
 	{
 		fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
