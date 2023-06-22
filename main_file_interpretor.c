@@ -31,7 +31,8 @@ int execute_instruction(stack_t **stack, const char *opcode,
 	}
 	else
 	{
-		fprintf(stderr, "Opcode %s not found! On line: %d\n", opcode, line_number);
+		fprintf(stderr, "L%d: unknown instruction %s\n",
+				line_number, opcode);
 		return (0);
 	}
 
@@ -53,8 +54,21 @@ int interpret_file(const char *file_path)
 
 	if (file == NULL)
 	{
-		fprintf(stderr, "FILE_PTR NULL!\n");
-		return (EXIT_FAILURE);
+		if (errno == EACCES)
+		{
+			fprintf(stderr, "EACCESS\n");
+			exit(126);
+		}
+		else if (errno = ENOENT)
+		{
+			fprintf(stderr, "ENOENT\n");
+			exit(127);
+		}
+		else
+		{
+			fprintf(stderr, "FILE_PTR NULL!\n");
+			return (EXIT_FAILURE);
+		}
 	}
 
 	line_number = 1;

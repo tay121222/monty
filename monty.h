@@ -6,6 +6,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <unistd.h>
+#include <errno.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -44,4 +45,5 @@ int push(stack_t **stack, int value);
 void pall(stack_t **stack);
 int execute_instruction(stack_t **stack, const char *opcode,
 		int line_number);
+char *rtrim(char *str, const char *chars);
 #endif /* MONTY_H */
