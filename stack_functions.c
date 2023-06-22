@@ -39,3 +39,34 @@ void pint(stack_t **stack, unsigned int line_number)
 	printf("%d\n", (*stack)->n);
 }
 
+/**
+ * pop - Removes the top element of the stack
+ * @stack: Pointer to stack
+ * @line_number: Line number in the file
+ *
+ * Return: Exit status
+ */
+void pop_code(stack_t **stack, unsigned int line_number)
+{
+	if (!get_dnodeint_at_index(*stack, 0))
+	{
+		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	pop(stack);
+}
+
+/**
+ * pop - pops node from stack
+ * @head: pointer to first node
+ * Return: n
+ */
+int pop(stack_t **head)
+{
+	stack_t *node = get_dnodeint_at_index(*head, 0);
+	int i = 0;
+
+	i = node->n;
+	delete_dnodeint_at_index(head, 0);
+	return (i);
+}

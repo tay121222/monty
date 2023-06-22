@@ -49,4 +49,6 @@ int execute_instruction(stack_t **stack, const char *opcode,
 char *rtrim(char *str, const char *chars);
 bool is_integer(const char *str);
 void pint(stack_t **stack, unsigned int line_number);
+void pop_code(stack_t **stack, unsigned int line_number);
+int pop(stack_t **head);
 #endif /* MONTY_H */
