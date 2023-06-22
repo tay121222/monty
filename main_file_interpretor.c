@@ -61,7 +61,7 @@ int interpret_file(const char *file_path)
 
 	while (fgets(line, sizeof(line), file) != NULL)
 	{
-		char *token = strtok(line, " \t\n");
+		char *token = strtok(line, " \r\t\n");
 
 		if (token == NULL || token[0] == '#')
 		{
