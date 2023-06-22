@@ -28,15 +28,14 @@ void pall(stack_t **stack)
  *
  * Return: Exit status
  */
-int pint(stack_t **stack, unsigned int line_number)
+void pint(stack_t **stack, unsigned int line_number)
 {
 	if (!get_dnodeint_at_index(*stack, 0))
 	{
 		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
-		return (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 
 	printf("%d\n", (*stack)->n);
-	return (EXIT_SUCCESS);
 }
 
