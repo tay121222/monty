@@ -21,7 +21,7 @@ int execute_instruction(stack_t **stack, const char *opcode,
 		fflush(stdout);
 		token = strtok(NULL, " \r\t\n");
 
-		if (token == NULL || (!isdigit(token[0]) && token[0] != '-'))
+		if (token == NULL || !is_integer(token))
 		{
 			fprintf(stderr, "L%u: usage: push integer\n", line_number);
 			return (EXIT_FAILURE);

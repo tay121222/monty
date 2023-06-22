@@ -7,6 +7,7 @@
 #include <ctype.h>
 #include <unistd.h>
 #include <errno.h>
+#include <stdbool.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -46,4 +47,5 @@ void pall(stack_t **stack);
 int execute_instruction(stack_t **stack, const char *opcode,
 		unsigned int line_number);
 char *rtrim(char *str, const char *chars);
+bool is_integer(const char *str);
 #endif /* MONTY_H */
