@@ -12,8 +12,13 @@ int execute_instruction(stack_t **stack, const char *opcode,
 	char *token;
 	int argument;
 
-	if (strcmp(opcode, "push") == 0)
+	if (strcmp(opcode, "pall") == 0)
 	{
+		pall(stack);
+	}
+	else if (strcmp(opcode, "push") == 0)
+	{
+		fflush(stdout);
 		token = strtok(NULL, " \r\t\n");
 
 		if (token == NULL || (!isdigit(token[0]) && token[0] != '-'))
@@ -24,10 +29,6 @@ int execute_instruction(stack_t **stack, const char *opcode,
 		argument = atoi(token);
 
 		push(stack, argument);
-	}
-	else if (strcmp(opcode, "pall") == 0)
-	{
-		pall(stack);
 	}
 	else
 	{
