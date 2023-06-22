@@ -61,20 +61,17 @@ void sub(stack_t **stack, unsigned int line_number)
  */
 void divide(stack_t **stack, unsigned int line_number)
 {
-	int n, m;
-
 	if (!get_dnodeint_at_index(*stack, 1))
 	{
 		fprintf(stderr, "L%u: can't div, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
-	n = pop(stack);
-	m = pop(stack);
-	if (!n)
+	if ((*stack)->n == 0)
 	{
 		fprintf(stderr, "L%u: division by zero\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	insert_dnodeint_at_index(stack, 0, m / n);
+	(*stack)->next->n = (*stack)->next->n / (*stack)->n;
+	pop(stack);
 }
