@@ -53,11 +53,10 @@ void sub(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * div - Divides the second top element of the stack by the top element
+ * divide - Divides the second top element of the stack by the top element
  * @stack: Pointer to stack
  * @line_number: Line number in the file
  *
- * Return: Exit status
  */
 void divide(stack_t **stack, unsigned int line_number)
 {
@@ -73,5 +72,22 @@ void divide(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	(*stack)->next->n = (*stack)->next->n / (*stack)->n;
+	pop(stack);
+}
+
+/**
+ * mul - multiplies the second top element of the stack with the top elemen
+ * @stack: Pointer to stack
+ * @line_number: Line number in the file
+ *
+ */
+void mul(stack_t **stack, unsigned int line_number)
+{
+	if (!get_dnodeint_at_index(*stack, 1))
+	{
+		fprintf(stderr, "L%u: can't mul, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	(*stack)->next->n = (*stack)->next->n * (*stack)->n;
 	pop(stack);
 }

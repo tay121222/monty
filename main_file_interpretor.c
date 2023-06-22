@@ -53,6 +53,8 @@ int execute_instruction(stack_t **stack, const char *opcode,
 		sub(stack, line_number);
 	else if (strcmp(opcode, "div") == 0)
 		divide(stack, line_number);
+	else if (strcmp(opcode, "mul") == 0)
+		mul(stack, line_number);
 	else
 	{
 		fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
