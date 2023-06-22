@@ -21,7 +21,7 @@ void swap(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * add - Adds the top two elements of the stack
+ * add - subtracts the top element of the stack
  * @stack: Pointer to stack
  * @line_number: Line number in the file
  */
@@ -33,5 +33,21 @@ void add(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	(*stack)->next->n = (*stack)->next->n + (*stack)->n;
+	pop(stack);
+}
+
+/**
+ * sub - Adds the top two elements of the stack
+ * @stack: Pointer to stack
+ * @line_number: Line number in the file
+ */
+void sub(stack_t **stack, unsigned int line_number)
+{
+	if (!get_dnodeint_at_index(*stack, 1))
+	{
+		fprintf(stderr, "L%u: can't sub, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	(*stack)->next->n = (*stack)->next->n - (*stack)->n;
 	pop(stack);
 }

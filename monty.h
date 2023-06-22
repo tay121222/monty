@@ -53,4 +53,5 @@ void pop_code(stack_t **stack, unsigned int line_number);
 int pop(stack_t **head);
 void swap(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
+void sub(stack_t **stack, unsigned int line_number);
 #endif /* MONTY_H */
