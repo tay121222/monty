@@ -70,3 +70,27 @@ void rotl(stack_t **stack, __attribute__((unused))unsigned int line_number)
 
 	last->next->next = NULL;
 }
+
+/**
+ * rotr - Rotates the stack to the bottom
+ * @stack: Pointer to the stack
+ * @line_number: Line number in the file
+ */
+void rotr(stack_t **stack, __attribute__((unused))unsigned int line_number)
+{
+	stack_t *last, *second_last;
+
+	if (!get_dnodeint_at_index(*stack, 1))
+		return;
+	last = *stack;
+	second_last = last->next;
+
+	while (last->next != NULL)
+		last = last->next;
+
+	last->next = *stack;
+	(*stack)->prev = last;
+	*stack = last;
+	(*stack)->prev->next = NULL;
+	(*stack)->prev = NULL;
+}
