@@ -78,12 +78,12 @@ void rotl(stack_t **stack, __attribute__((unused))unsigned int line_number)
  */
 void rotr(stack_t **stack, __attribute__((unused))unsigned int line_number)
 {
-	stack_t *last, *second_last;
+	stack_t *last;
 
 	if (!get_dnodeint_at_index(*stack, 1))
 		return;
+
 	last = *stack;
-	second_last = last->next;
 
 	while (last->next != NULL)
 		last = last->next;
