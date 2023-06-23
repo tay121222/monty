@@ -73,22 +73,25 @@ int execute_instruction(stack_t **stack, const char *opcode,
 int interpret_file(const char *file_path)
 {
 	FILE *file = fopen(file_path, "r");
-	int line_number;
+	int line_number, status;
 	stack_t *stack = NULL;
 	char line[100];
-	int status;
 
 	if (file == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", file_path);
 		return (EXIT_FAILURE);
 	}
-
 	line_number = 1;
-
 	while (fgets(line, sizeof(line), file) != NULL)
 	{
 		char *token = strtok(line, " \r\t\n");
+
+		if (line[0] == "#")
+		{
+			line_number++;
+			continue;
+		}
 
 		if (token != NULL)
 		{
@@ -98,17 +101,14 @@ int interpret_file(const char *file_path)
 				continue;
 			}
 			status = execute_instruction(&stack, token, line_number);
-
 			if (status != EXIT_SUCCESS)
 			{
 				fclose(file);
 				return (status);
 			}
 		}
-
 		line_number++;
 	}
-
 	free_dlistint(stack);
 	fclose(file);
 	return (EXIT_SUCCESS);
