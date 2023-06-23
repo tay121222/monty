@@ -87,12 +87,6 @@ int interpret_file(const char *file_path)
 	{
 		char *token = strtok(line, " \r\t\n");
 
-		if (line[0] == "#")
-		{
-			line_number++;
-			continue;
-		}
-
 		if (token != NULL)
 		{
 			if (token[0] == '#')
