@@ -68,13 +68,25 @@ void pstr(stack_t **stack, __attribute__((unused))unsigned int line_number)
 }
 
 /**
- * set_mode - Sets the mode to either stack or queue
- * @opcode: Opcode ("stack" or "queue")
+ * stack - Sets the format of the data to a stack (LIFO)
+ * @stack: Pointer to the stack
+ * @line_number: Line number in the file
  */
-void set_mode(const char *opcode)
+void op_stack(stack_t **stack, unsigned int line_number)
 {
-	if (strcmp(opcode, "stack") == 0)
-		mode = MODE_STACK;
-	else if (strcmp(opcode, "queue") == 0)
-		mode = MODE_QUEUE;
+	(void)stack;
+	(void)line_number;
+	mode = MODE_STACK;
+}
+
+/**
+ * queue - Sets the format of the data to a queue (FIFO)
+ * @stack: Pointer to the stack
+ * @line_number: Line number in the file
+ */
+void queue(stack_t **stack, unsigned int line_number)
+{
+	(void)stack;
+	(void)line_number;
+	mode = MODE_QUEUE;
 }
