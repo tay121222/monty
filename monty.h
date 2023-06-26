@@ -4,6 +4,8 @@
 #define MODE_STACK 0
 #define MODE_QUEUE 1
 
+extern int mode;
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

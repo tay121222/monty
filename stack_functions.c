@@ -9,6 +9,8 @@
  */
 int push(stack_t **stack, int value)
 {
+	if (mode == MODE_QUEUE)
+		return (!!add_dnodeint_end(stack, value));
 	return (!!add_dnodeint(stack, value));
 }
 

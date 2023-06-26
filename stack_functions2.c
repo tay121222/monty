@@ -1,7 +1,5 @@
 #include "monty.h"
 
-int mode = MODE_STACK;
-
 /**
  * mod - computes the rest of the div of the second top element
  * @stack: Pointer to stack
@@ -68,7 +66,7 @@ void pstr(stack_t **stack, __attribute__((unused))unsigned int line_number)
 }
 
 /**
- * stack - Sets the format of the data to a stack (LIFO)
+ * op_stack - Sets the format of the data to a stack (LIFO)
  * @stack: Pointer to the stack
  * @line_number: Line number in the file
  */
@@ -76,7 +74,6 @@ void op_stack(stack_t **stack, unsigned int line_number)
 {
 	(void)stack;
 	(void)line_number;
-	mode = MODE_STACK;
 }
 
 /**
@@ -88,5 +85,4 @@ void queue(stack_t **stack, unsigned int line_number)
 {
 	(void)stack;
 	(void)line_number;
-	mode = MODE_QUEUE;
 }

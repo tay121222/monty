@@ -1,5 +1,6 @@
 #include "monty.h"
 
+int mode = MODE_STACK;
 /**
  * execute_push - Executes the push opcode
  * @stack: Pointer to stack
@@ -33,6 +34,7 @@ int execute_push(stack_t **stack, unsigned int line_number)
 int execute_instruction(stack_t **stack, const char *opcode,
 		unsigned int line_number)
 {
+
 	if (strcmp(opcode, "pall") == 0)
 		pall(stack);
 	else if (strcmp(opcode, "push") == 0)
@@ -89,6 +91,8 @@ int interpret_file(const char *file_path)
 	stack_t *stack = NULL;
 	char line[100];
 
+	mode = MODE_STACK;
+
 	if (file == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", file_path);
@@ -105,6 +109,18 @@ int interpret_file(const char *file_path)
 			{
 				line_number++;
 				continue;
+			}
+			else if (strcmp(token, "stack") == 0)
+			{
+				mode = MODE_STACK;
+				line_number++;
+				continue;
+			}
+			else if (strcmp(token, "queue") == 0)
+			{
+				 mode = MODE_QUEUE;
+				 line_number++;
+				 continue;
 			}
 			status = execute_instruction(&stack, token, line_number);
 			if (status != EXIT_SUCCESS)
