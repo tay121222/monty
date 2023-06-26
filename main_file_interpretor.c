@@ -64,6 +64,8 @@ int execute_instruction(stack_t **stack, const char *opcode,
 		rotl(stack, line_number);
 	else if (strcmp(opcode, "rotr") == 0)
 		rotr(stack, line_number);
+	else if (strcmp(opcode, "stack") == 0 || strcmp(opcode, "queue") == 0)
+		set_mode(opcode);
 	else
 	{
 		fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);

@@ -1,7 +1,9 @@
 #include "monty.h"
 
+int mode = MODE_STACK;
+
 /**
- * mod - computes the rest of the div of the second top element of the stack
+ * mod - computes the rest of the div of the second top element
  * @stack: Pointer to stack
  * @line_number: Line number in the file
  *
@@ -55,11 +57,24 @@ void pstr(stack_t **stack, __attribute__((unused))unsigned int line_number)
 {
 	stack_t *current = get_dnodeint_at_index(*stack, 0);
 
-	while (current != NULL && current->n != 0 && current->n >= 0 && current->n <= 127)
+	while (current != NULL && current->n
+			!= 0 && current->n >= 0 && current->n <= 127)
 	{
 		putchar(current->n);
 		current = current->next;
 	}
 
 	putchar('\n');
+}
+
+/**
+ * set_mode - Sets the mode to either stack or queue
+ * @opcode: Opcode ("stack" or "queue")
+ */
+void set_mode(const char *opcode)
+{
+	if (strcmp(opcode, "stack") == 0)
+		mode = MODE_STACK;
+	else if (strcmp(opcode, "queue") == 0)
+		mode = MODE_QUEUE;
 }
